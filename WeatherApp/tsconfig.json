@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "jsx": "react",
+    "strict": true,
+    "lib": ["ES6"],
+    "baseUrl": "./src",
+    "paths": {
+      "~/*": ["*"]
+    },
+    "noEmit": true
+  },
+  "exclude": [
+    "jest.config.js",
+    "babel.config.js",
+    "node_modules",
+    "metro.config.js"
+  ]
+}
