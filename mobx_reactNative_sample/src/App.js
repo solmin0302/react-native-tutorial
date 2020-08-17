@@ -1,13 +1,11 @@
 import React from 'react';
 import CounterContainer from './containers/CounterContainer';
-import Sample from './components/Sample';
 import {StyleSheet, ScrollView} from 'react-native';
 
 function App() {
   return (
     <ScrollView style={styles.container}>
-      {/* <CounterContainer /> */}
-      <Sample />
+      <CounterContainer />
     </ScrollView>
   );
 }

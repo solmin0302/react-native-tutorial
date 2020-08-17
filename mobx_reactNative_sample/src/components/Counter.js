@@ -3,31 +3,53 @@ import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import {observer} from 'mobx-react';
 import CounterStore from '../store/counterStore';
 
-@observer
-class Counter extends React.Component {
-  render() {
-    const {index, value} = this.props;
-    return (
-      <View index={value.toString()} style={styles.counterContainer}>
-        <Text style={styles.counterInfo}>
-          Count: {CounterStore.counter[index].counterNum}
-        </Text>
-        <View style={styles.counterBtnContainer}>
-          <TouchableOpacity
-            style={styles.counterButton}
-            onPress={() => CounterStore.handleIncrement({index})}>
-            <Text>INCREMENT</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.counterButton}
-            onPress={() => CounterStore.handleDecrement({index})}>
-            <Text>DECREMENT</Text>
-          </TouchableOpacity>
-        </View>
+// @observer
+// class Counter extends React.Component {
+//   render() {
+//     const {index, value} = this.props;
+//     return (
+//       <View index={value.toString()} style={styles.counterContainer}>
+//         <Text style={styles.counterInfo}>
+//           Count: {CounterStore.counter[index].counterNum}
+//         </Text>
+//         <View style={styles.counterBtnContainer}>
+//           <TouchableOpacity
+//             style={styles.counterButton}
+//             onPress={() => CounterStore.handleIncrement({index})}>
+//             <Text>INCREMENT</Text>
+//           </TouchableOpacity>
+//           <TouchableOpacity
+//             style={styles.counterButton}
+//             onPress={() => CounterStore.handleDecrement({index})}>
+//             <Text>DECREMENT</Text>
+//           </TouchableOpacity>
+//         </View>
+//       </View>
+//     );
+//   }
+// }
+
+const Counter = observer(({index, value}) => {
+  return (
+    <View index={value.toString()} style={styles.counterContainer}>
+      <Text style={styles.counterInfo}>
+        Count: {CounterStore.counter[index].counterNum}
+      </Text>
+      <View style={styles.counterBtnContainer}>
+        <TouchableOpacity
+          style={styles.counterButton}
+          onPress={() => CounterStore.handleIncrement({index})}>
+          <Text>INCREMENT</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.counterButton}
+          onPress={() => CounterStore.handleDecrement({index})}>
+          <Text>DECREMENT</Text>
+        </TouchableOpacity>
       </View>
-    );
-  }
-}
+    </View>
+  );
+});
 
 const styles = StyleSheet.create({
   counterContainer: {
