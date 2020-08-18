@@ -1,24 +1,40 @@
 import React from 'react';
-import {Text, SafeAreaView} from 'react-native';
-import styled from 'styled-components/native';
-import TodoListContainer from './containers/TodoListContainer';
-import Todo from './containers/Todo';
+import {observer, useLocalStore} from 'mobx-react'; // 6.x or mobx-react-lite@1.4.0
 
-const Container = styled.View`
-  flex: 1;
-  background-color: #ffe3e3;
-`;
+export const TodoList = observer<{initialTodos: string[]}>(({initialTodos}) => {
+  const todoRef = React.useRef();
+  const store = useLocalStore(() => ({
+    todos: createTodos(initialTodos) as Record<string, boolean>,
+    get pendingTodos() {
+      return Object.keys(store.todos).filter(
+        (todo) => store.todos[todo] === false,
+      );
+    },
+    get doneTodos() {
+      return Object.keys(store.todos).filter(
+        (todo) => store.todos[todo] === true,
+      );
+    },
+    addTodo: () => {
+      store.todos[todoRef.current.value] = false;
+      todoRef.current.value = '';
+    },
+    toggleTodo: (todo: string) => {
+      store.todos[todo] = !store.todos[todo];
+    },
+  }));
 
-interface Props {}
-
-const App = ({}: Props) => {
-  return (
-    <TodoListContainer>
-      <Container>
-        <Todo />
-      </Container>
-    </TodoListContainer>
+  const renderTodo = (done: boolean) => (todo) => (
+    <Todo key={todo} done={done} text={todo} onToggle={store.toggleTodo} />
   );
-};
 
-export default App;
+  return (
+    <form onSubmit={store.addTodo}>
+      {store.pendingTodos.map(renderTodo(false))}
+      {store.doneTodos.map(renderTodo(true))}
+      <br />
+      <input ref={todoRef} />
+      <button>Add todo</button>
+    </form>
+  );
+});
