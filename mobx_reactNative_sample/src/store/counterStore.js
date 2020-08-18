@@ -1,4 +1,6 @@
-import {observable, action} from 'mobx';
+import {observable, action, decorate} from 'mobx';
+import Counter from '~/components/Counter';
+import {observer} from 'mobx-react';
 
 // class CounterStore {
 //   @observable counter = [{counterNum: 0}];
@@ -21,7 +23,6 @@ import {observable, action} from 'mobx';
 // }
 const CounterStore = observable(() => {
   const counter = [{counterNum: 0}];
-
   const handleAddCounter = () => {
     this.counter.push({counterNum: 0});
   };
@@ -39,4 +40,4 @@ const CounterStore = observable(() => {
   };
 });
 
-export default new CounterStore();
+export default CounterStore;

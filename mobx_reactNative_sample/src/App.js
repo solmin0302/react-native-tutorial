@@ -3,6 +3,7 @@ import CounterContainer from './containers/CounterContainer';
 import {StyleSheet, ScrollView} from 'react-native';
 
 function App() {
+  console.log('APP');
   return (
     <ScrollView style={styles.container}>
       <CounterContainer />
