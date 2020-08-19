@@ -69,6 +69,7 @@ const SubCatalogList = ({title, url, onPress}: Props) => {
               }}>
               <CatalogImage
                 source={{uri: (item as IMovie).large_cover_image}}
+                style={{width: 136, height: 201}}
               />
             </CatalogImageContainer>
           )}

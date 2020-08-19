@@ -18,10 +18,11 @@ interface Props {
 const CheckLogin = ({navigation}: Props) => {
   AsyncStorage.getItem('key')
     .then((value) => {
+      console.log(value);
       if (value) {
         navigation.navigate('MovieNavigator');
       } else {
-        navigation.navigate('LoginNavgatior');
+        navigation.navigate('LoginNavigator');
       }
     })
     .catch((error: Error) => {

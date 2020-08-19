@@ -44,6 +44,24 @@ const MovieHome = ({navigation}: Props) => {
         }}
       />
       <SubCatalogList
+        title="최신등록 순"
+        url="https://yts.lt/api/v2/list_movies.json?sort_by=data_added&order_by=desc&limit=10"
+        onPress={(id: number) => {
+          navigation.navigate('MovieDetail', {
+            id,
+          });
+        }}
+      />
+      <SubCatalogList
+        title="평점 순"
+        url="https://yts.lt/api/v2/list_movies.json?sort_by=rating&order_by=desc&limit=10"
+        onPress={(id: number) => {
+          navigation.navigate('MovieDetail', {
+            id,
+          });
+        }}
+      />
+      <SubCatalogList
         title="다운로드 순"
         url="https://yts.lt/api/v2/list_movies.json?sort_by=download_count&order_by=desc&limit=10"
         onPress={(id: number) => {
